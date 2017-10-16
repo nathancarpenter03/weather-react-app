@@ -1,16 +1,10 @@
 # React Weather App
 
-This is the companion code for the Beginner React series on the [Scotch School](https://school.scotch.io/).
+This is a weather app built with React.js
 
 ## Setup
 
-Clone the project, install the dependencies, and run the project.
+Clone the project, install the dependencies, and run the project. (yarn install > yarn start)
 
-```
-git clone https://github.com/searsaw/react-weather-app.git
-cd react-weather-app
-yarn
-yarn start
-```
+Running on http://localhost:8080
 
-Then open up your browser to http://localhost:8080, and you will be able to see the project.
