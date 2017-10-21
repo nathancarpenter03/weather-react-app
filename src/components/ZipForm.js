@@ -5,13 +5,13 @@ class ZipForm extends React.Component {
     constructor(props) {
         // call parents constructor and pass its props
         super(props); 
+        // set initial state 
+        this.state = {
+            zipcode: ''
+        }
         // bind methods
         this.inputUpdated = this.inputUpdated.bind(this);
         this.submitZipCode = this.submitZipCode.bind(this);
-        // set initial state 
-        this.state = {
-            zipcode: ""
-        }
     }
 
     // component methods  
@@ -26,7 +26,6 @@ class ZipForm extends React.Component {
         const { onSubmit } = this.props;
 
         onSubmit(zipcode);
-        this.setState({zipcode: ''})
     }
 
     render() {

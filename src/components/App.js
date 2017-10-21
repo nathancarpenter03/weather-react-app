@@ -6,22 +6,16 @@ import { get } from 'axios';
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.onFormSubmit = this.onFormSubmit.bind(this);
         this.state = {
-            zipcode: "",
-            city: {},
-            dates: [],
-            selectedDate: null
+            zipcode: ''
         }
+        this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
-    onFormSubmit (zipcode) {
-        get("http://localhost:3000/weather/${zipcode}")
-        .then(({ data }) => {
-            const { city, list: dates } = data;
-            this.setState({ zipcode, city, dates, selectedDate: null })});
-    }
-
+    onFormSubmit(zipcode) {
+        this.setState({ zipcode });
+      }
+    // onSubmit is passed down to ZipForm below as props 
     render () {
         return (
             <div className="app">
