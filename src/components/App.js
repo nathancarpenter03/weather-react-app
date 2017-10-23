@@ -7,13 +7,21 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            zipcode: ''
-        }
+            zipcode: '',
+            city: {},
+            dates: [],
+            selectedDate: null
+          };
         this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
     onFormSubmit(zipcode) {
-        this.setState({ zipcode });
+        get(`http://localhost:3000/weather/${zipcode}`)
+        .then(({ data }) => {
+          const { city, list: dates } = data;
+      
+          this.setState({ zipcode, city, dates, selectedDate: null });
+        });
       }
     // onSubmit is passed down to ZipForm below as props 
     render () {
