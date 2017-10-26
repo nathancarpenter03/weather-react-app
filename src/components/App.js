@@ -1,6 +1,7 @@
 import React from 'react';
 // Don't need to import reactDom (only in root file)
 import ZipForm from './ZipForm';
+import WeatherList from './WeatherList';
 import { get } from 'axios';
 
 class App extends React.Component {
@@ -13,6 +14,7 @@ class App extends React.Component {
             selectedDate: null
           };
         this.onFormSubmit = this.onFormSubmit.bind(this);
+        this.onDayClicked = this.onDayClicked.bind(this);        
     }
 
     onFormSubmit(zipcode) {
@@ -24,11 +26,20 @@ class App extends React.Component {
         });
       }
     // onSubmit is passed down to ZipForm below as props 
+
+    onDayClicked(dayIndex) {
+        this.setState({ selectedDate: dayIndex });
+      }
+
     render () {
+        const {dates} = this.state;
+
         return (
             <div className="app">
             <p>Weather App</p>
-            <ZipForm onSubmit={this.onFormSubmit} />
+            <ZipForm onSubmit={this.onFormSubmit} /> 
+            <WeatherList days={dates} onDayClicked={this.onDayClicked} />
+            
         </div>
     )}
 }
