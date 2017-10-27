@@ -2,6 +2,7 @@ import React from 'react';
 // Don't need to import reactDom (only in root file)
 import ZipForm from './ZipForm';
 import WeatherList from './WeatherList';
+import CurrentDay from './Currentday';
 import { get } from 'axios';
 
 class App extends React.Component {
@@ -32,16 +33,21 @@ class App extends React.Component {
       }
 
     render () {
-        const {dates} = this.state;
-
+        const {dates, city, selectedDate} = this.state;
+        // Pull dates, city, sel date out of state to use below 
         return (
             <div className="app">
-            <p>Weather App</p>
-            <ZipForm onSubmit={this.onFormSubmit} /> 
-            <WeatherList days={dates} onDayClicked={this.onDayClicked} />
-            
-        </div>
-    )}
+                <h3>Weather App</h3>
+                <ZipForm onSubmit={this.onFormSubmit} /> 
+                <div>
+                    <p>The city of {this.state.city.name} matched the entered zipcode. Select a day below for more details!</p>
+                </div>
+                <WeatherList days={dates} onDayClicked={this.onDayClicked} />
+                
+                {selectedDate !== null && <CurrentDay day={dates[selectedDate]} city={city} />}     
+            </div>
+        );
+    }
 }
 
 export default App;
